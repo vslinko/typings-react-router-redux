@@ -4,7 +4,7 @@
 	"ambient": false,
 	"dependencies": {
 		"history": "github:andrew-w-ross/typings-history",
-		"redux": "github:andrew-w-ross/typings-redux#e16683b6d921624478ff926c9b50151aa4a5d22d"
+		"redux": "github:andrew-w-ross/typings-redux"
 	},
 	"devDependencies": {
 		"react-redux": "github:andrew-w-ross/typings-react-redux#6be88a57427f8ec220cad13d68565fd5f5711146",
