@@ -124,7 +124,7 @@ declare module reactRouterRedux {
 	 * @deprecated
 	 * @export
 	 */
-	export const routeActions: IRouteActions;
+	export const routerActions: IRouteActions;
     
     /**
      * This action type will be dispatched by the history actions below.
