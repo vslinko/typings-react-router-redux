@@ -7,7 +7,7 @@ import ReactDOM from 'react-dom'
 import { createStore, combineReducers, applyMiddleware, IActionGeneric, IAction, bindActionCreators } from 'redux'
 import { Provider, connect } from 'react-redux'
 import { Router, Route, browserHistory, Link } from 'react-router'
-import { syncHistory, routeReducer } from './react-router-redux'
+import { routeReducer, syncHistoryWithStore, routerMiddleware } from './react-router-redux'
 import { Location } from "history";
 
 interface IState {
@@ -48,13 +48,11 @@ const rootReducer = combineReducers<IState>({
 });
 
 // Sync dispatched route actions to the history
-const reduxRouterMiddleware = syncHistory<IState>(browserHistory)
+const reduxRouterMiddleware = routerMiddleware<IState>(browserHistory)
 const createStoreWithMiddleware = applyMiddleware(reduxRouterMiddleware)(createStore)
 
 const store = createStoreWithMiddleware(rootReducer);
-
-// Required for replaying actions from devtools to work
-reduxRouterMiddleware.listenForReplays(store, s => s.location);
+const history = syncHistoryWithStore(browserHistory, store);
 
 class App extends React.Component<{}, {}>{
 	render() {
@@ -113,7 +111,7 @@ class Bar extends React.Component<IBarProps, {}>{
 
 ReactDOM.render(
 	<Provider store={store}>
-		<Router history={browserHistory}>
+		<Router history={history}>
 			<Route path="/" component={App}>
 				<Route path="message" component={Foo}/>
 				<Route path="count" component={Bar}/>
