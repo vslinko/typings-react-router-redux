@@ -3,7 +3,7 @@
 	"main": "react-router-redux.d.ts",
 	"ambient": false,
 	"dependencies": {
-		"history": "github:andrew-w-ross/typings-history",
+		"history": "github:vslinko/typings-history#master",
 		"redux": "github:andrew-w-ross/typings-redux#e16683b6d921624478ff926c9b50151aa4a5d22d"
 	},
 	"devDependencies": {
